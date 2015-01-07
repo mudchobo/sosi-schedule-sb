@@ -1,2 +1,4 @@
-example-spring-boot-sosi-schedule
+sosi-schedule
 =================================
+
+spring boot example
