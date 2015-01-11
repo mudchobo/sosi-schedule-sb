@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by jared on 15. 1. 2..
  */
 @RestController
+@RequestMapping("/schedule")
 public class ScheduleController {
 
     @Autowired
@@ -22,12 +23,18 @@ public class ScheduleController {
     @Autowired
     private SosiRepository sosiRepository;
 
-    @RequestMapping("/schedule/add/{sosiId}")
+    @RequestMapping("{scheduleId}")
+    public Schedule getSchedule(@PathVariable Long scheduleId) {
+        Schedule schedule = scheduleRepository.findOne(scheduleId);
+        Sosi sosi = schedule.getSosi();
+        return schedule;
+    }
+
+    @RequestMapping("add/{sosiId}")
     public Schedule addSchedule(@PathVariable Long sosiId, @RequestParam(value="program") String program) {
         Sosi sosi = sosiRepository.findOne(sosiId);
         Schedule schedule = scheduleRepository.save(new Schedule(sosi, program));
 
-        System.out.println("schedule = " + schedule.toString());
         return schedule;
     }
 }

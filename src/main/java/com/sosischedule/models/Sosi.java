@@ -1,8 +1,5 @@
 package com.sosischedule.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,8 +16,7 @@ public class Sosi {
     private String name;
 
     @OneToMany
-    @JoinColumn(name="sosi_id", referencedColumnName = "id")
-    @JsonManagedReference
+    @JoinColumn(name="sosi_id", referencedColumnName="id")
     private List<Schedule> scheduleList;
 
     public Sosi() {
@@ -53,4 +49,5 @@ public class Sosi {
     public void setScheduleList(List<Schedule> scheduleList) {
         this.scheduleList = scheduleList;
     }
+
 }

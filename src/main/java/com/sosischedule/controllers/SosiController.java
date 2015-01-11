@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by jared on 15. 1. 2..
  */
 @RestController
+@RequestMapping("/sosi")
 public class SosiController {
 
     @Autowired
     private SosiRepository sosiRepository;
 
-    @RequestMapping("/sosi/{sosiId}")
+    @RequestMapping("{sosiId}")
     public Sosi getSosi(@PathVariable Long sosiId) {
         Sosi sosi = sosiRepository.findOne(sosiId);
         return sosi;
